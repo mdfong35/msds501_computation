@@ -9,6 +9,8 @@
 #   - What type of error is it?
 #   - Which line causes it?
 #   - Write a comment below explaining the cause.
+### ValueError caused by line 'score = int(s)' because index 2 cannot be converted into int
+# 
 #
 # YOUR TASK (Task 3): Wrap the risky conversion in try/except.
 #   - Catch the specific error type (not bare except:)
@@ -33,9 +35,12 @@ scores = ['88', '95', 'absent', '72', 'n/a', '84']
 valid = []
 
 for i, s in enumerate(scores):
-    score = int(s)            # <-- this line crashes on bad strings
-    print(f'Score [{i}]: {score}')
-    valid.append(score)
+    try: 
+        score = int(s)            # <-- this line crashes on bad strings
+        print(f'Score [{i}]: {score}')
+        valid.append(score)
+    except ValueError: 
+        print(f'[index {i}] Skipped bad score: {s}')
 
 print(f'Total of valid scores: {sum(valid)}')
 print(f'Count of valid scores: {len(valid)}')
